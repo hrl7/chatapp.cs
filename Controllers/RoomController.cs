@@ -47,7 +47,7 @@ namespace ChatApp.Controllers
         // POST: RoomController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Room room)
+        public async Task<IActionResult> Create([Bind("Name")] Room room)
         {
             if (ModelState.IsValid)
             {
