@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChatApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200703123418_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200704043147_IntiialCreate")]
+    partial class IntiialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,10 +54,9 @@ namespace ChatApp.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<byte[]>("Timestamp")
-                        .IsConcurrencyToken()
+                    b.Property<DateTime>("Timestamp")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("varbinary(4000)");
+                        .HasColumnType("datetime");
 
                     b.HasKey("Id");
 
