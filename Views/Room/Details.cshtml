@@ -29,6 +29,12 @@
             @Html.DisplayFor(model => model.Timestamp)
         </dd>
     </dl>
+    <h5>Messages</h5>
+    <ul>
+        @foreach (var msg in Model.Messages) {
+            @msg.Text    
+        }
+    </ul>
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

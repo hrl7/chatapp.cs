@@ -6,7 +6,6 @@ using ChatApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Asn1.Cms;
 
 namespace ChatApp.Controllers
 {
@@ -30,7 +29,7 @@ namespace ChatApp.Controllers
             {
                 return NotFound();
             }
-            Room room = await _context.Rooms.FirstOrDefaultAsync(m => m.Id == id);
+            Room room = await _context.Rooms.Include(room => room.Messages).FirstOrDefaultAsync(room => room.Id == id);
             if (room == null)
             {
                 return NotFound();

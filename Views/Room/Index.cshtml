@@ -27,6 +27,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <a href="C:\Users\zigen\source\repos\ChatApp\Views\Room\Index.cshtml">C:\Users\zigen\source\repos\ChatApp\Views\Room\Index.cshtml</a>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
@@ -37,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.Timestamp)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new {  id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new {  id=item.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
 }
