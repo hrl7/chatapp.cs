@@ -1,5 +1,4 @@
-﻿using MySql.Data.EntityFrameworkCore.Storage.Internal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;

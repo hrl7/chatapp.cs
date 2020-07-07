@@ -1,6 +1,7 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using MySql.Data.EntityFrameworkCore.Metadata;
+using Pomelo.EntityFrameworkCore.MySql.Metadata;
 
 namespace ChatApp.Migrations
 {
@@ -16,8 +17,8 @@ namespace ChatApp.Migrations
                 oldType: "varbinary(4000)",
                 oldRowVersion: true,
                 oldNullable: true)
-                .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.ComputedColumn)
-                .OldAnnotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.ComputedColumn);
+                .Annotation("MySQL:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn)
+                .OldAnnotation("MySQL:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -29,8 +30,8 @@ namespace ChatApp.Migrations
                 rowVersion: true,
                 nullable: true,
                 oldClrType: typeof(DateTime))
-                .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.ComputedColumn)
-                .OldAnnotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.ComputedColumn);
+                .Annotation("MySQL:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn)
+                .OldAnnotation("MySQL:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn);
         }
     }
 }

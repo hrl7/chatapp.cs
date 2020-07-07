@@ -8,8 +8,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ChatApp.Models
 {
-    public class Room 
-    { 
+    public class Room
+    {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -20,5 +20,7 @@ namespace ChatApp.Models
         [DefaultValue("CURRENT_TIMESTAMP")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime Timestamp { get; set; }
+
+        public List<Message> Messages { get; set; }
     }
 }
