@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using ChatApp.Models.Config;
 
 namespace ChatApp.Models
 {
@@ -11,8 +12,16 @@ namespace ChatApp.Models
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new AppUserConfigurations { });
+            builder.ApplyConfiguration(new RoomConfigurations { });
+            builder.ApplyConfiguration(new MessageConfigurations { });
+        }
+
         public DbSet<Message> Messages { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
