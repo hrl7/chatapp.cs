@@ -6,9 +6,10 @@ using ChatApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Authorization;
 namespace ChatApp.Controllers
 {
+    [Authorize]
     public class RoomController : Controller
     {
 

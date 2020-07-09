@@ -18,11 +18,11 @@ namespace ChatApp.Models
                     return;
                 }
                 context.AddRange(
-                    new Room { Name = "test room 1" },
-                    new Room { Name = "test room 2" },
-                    new Room { Name = "test room 3" },
-                    new Room { Name = "test room 4" },
-                    new Room { Name = "test room 5" }
+                    new Room {Id=1, Name = "test room 1" },
+                    new Room {Id=2, Name = "test room 2" },
+                    new Room {Id=3, Name = "test room 3" },
+                    new Room {Id=4, Name = "test room 4" },
+                    new Room { Id=5,Name = "test room 5" }
                 );
                 context.SaveChanges();
                 var rooms = context.Rooms.ToList();

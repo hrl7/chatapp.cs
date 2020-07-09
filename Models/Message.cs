@@ -15,7 +15,7 @@ namespace ChatApp.Models
         public int Id { get; set; }
         [Required]
         public string Text { get; set; }
-        [Required]
+        public int RoomId { get; set; }
         public Room Room { get; set; }
         [Required]
         [DefaultValue("CURRENT_TIMESTAMP")]
