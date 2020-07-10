@@ -6,8 +6,9 @@ using ChatApp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,18 +29,37 @@ namespace ChatApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<AppDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<AppUser>().AddEntityFrameworkStores<AppDbContext>();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-            {
-                options.LoginPath = "/identity/account/login";
-            });
+            services.AddDefaultIdentity<AppUser>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+//            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+//                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+//                    options => { options.LoginPath = "/identity/account/login"; });
             services.AddControllersWithViews();
             services.AddRazorPages();
+//            services.ConfigureApplicationCookie(options =>
+//            {
+//                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+//                options.Cookie.Name = "YourAppCookieName";
+//                options.Cookie.HttpOnly = true;
+//                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+//                options.LoginPath = "/Identity/Account/Login";
+//
+//                // ReturnUrlParameter requires 
+//                //using Microsoft.AspNetCore.Authentication.Cookies;
+//                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+//                options.SlidingExpiration = true;
+//            });
 
-
+//            services.Configure<CookiePolicyOptions>(options =>
+//            {
+//                options.ConsentCookie.IsEssential = true;
+//                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+//                options.CheckConsentNeeded = context => false;
+//                options.MinimumSameSitePolicy = SameSiteMode.None;
+//            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +75,8 @@ namespace ChatApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+//            app.UseCookiePolicy();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -62,7 +84,6 @@ namespace ChatApp
 
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
