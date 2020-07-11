@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+
 namespace ChatApp.Controllers
 {
     [Authorize]
@@ -14,8 +16,13 @@ namespace ChatApp.Controllers
     {
 
         private readonly AppDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public RoomController(AppDbContext context) => _context = context;
+        public RoomController(AppDbContext context, UserManager<AppUser> userManager)
+        {
+          _context = context;
+          _userManager = userManager;
+        } 
 
         // GET: RoomController
         public async Task<IActionResult> Index()
@@ -86,6 +93,13 @@ namespace ChatApp.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostMessage()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            return Ok(new {id = user.Id});
         }
 
         // GET: RoomController/Delete/5
